@@ -1,0 +1,15 @@
+# Replace sample webpages and/or add new ones with the following formatting
+# wenpagename:
+#   tag: webpage identifier name
+#   url: webpage URL
+#   interval: interval between checks. Accepts #m, #h or #d where # is an integer.
+
+webpages:
+  example:
+    tag: Example page
+    url: http://example.com
+    interval: 30m
+  example2:
+    tag: Example of unreachable page
+    url: http://examplenotvalid123.com/
+    interval: 1d
