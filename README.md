@@ -57,7 +57,7 @@ Save the password for later use in project parameters.
 1. Clone the repository:
 
 ```bash
-$ git clone https://github.com/tngaspar/twitter-stream-mongo.git
+$ git clone https://github.com/tngaspar/isitdown-alert.git
 ```
 
 2. Create `.env` file in project root folder with the following parameters:
