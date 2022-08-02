@@ -1,9 +1,9 @@
-# Is It Down Alert
+# Is It Down Alert - Webpage Status Email Alerts
 
 Validates if webpages are online on a predefined interval. Sends email alerts from gmail account if a page is down. Quick and simple deployment using Docker container.
 
 ## Table of Contents
-- [Is It Down Alert](#is-it-down-alert)
+- [Is It Down Alert - Webpage Status Email Alerts](#is-it-down-alert---webpage-status-email-alerts)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [Requirements](#requirements)
@@ -61,7 +61,7 @@ $ git clone https://github.com/tngaspar/isitdown-alert.git
 ```
 
 2. Create `.env` file in project root folder with the following parameters:
-```toml
+```
 SENDER_EMAIL=<Sender Gmail created = example@gmail.com>
 APP_PASSWORD=<App Password created for Gmail Account>
 RECEIVER_EMAIL=<Email that Receives Alerts = example@something.com>
