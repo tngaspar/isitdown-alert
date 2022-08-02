@@ -12,6 +12,7 @@ Validates if webpages are online on a predefined interval. Sends email alerts fr
     - [Setting up the project](#setting-up-the-project)
     - [Removing Docker container](#removing-docker-container)
   - [Email Alert Example](#email-alert-example)
+  - [Dependencies](#dependencies)
 ## Features
 
 * Sends request to website periodically;
@@ -99,5 +100,14 @@ Emails sent when website is unreacheble have the following format:
 <p align="center">
 <img src="docs/images/email_alert_example.png" width=90% />
 </p>
+
+## Dependencies
+
+* [Yagmail](https://pypi.org/project/yagmail/)
+* [python-crontab](https://pypi.org/project/python-crontab/)
+* [PyYAML](https://pypi.org/project/PyYAML/)
+* [pytz](https://pypi.org/project/pytz/)
+* [python-dotenv](https://pypi.org/project/python-dotenv/)
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
