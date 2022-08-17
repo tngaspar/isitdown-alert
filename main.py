@@ -1,6 +1,12 @@
 from crontab import CronTab
 import yaml
 import re
+from utils.db import PostgresDB
+
+# if not exists, create schema and table to store crontab jobs execution data
+conn = PostgresDB()
+conn.create_cron_history_table()
+
 
 def _add_interval(job, item, interval):
     if re.match("[0-9]+m$", interval):
