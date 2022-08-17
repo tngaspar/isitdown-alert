@@ -1,6 +1,32 @@
 version: "3.3"
 services:
+  
   cronjobs:
     container_name: cronjobs
     build: .
     restart: always
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14.5-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=${USER}
+      - POSTGRES_PASSWORD=${PASSWORD}
+      - POSTGRES_DB=${DATABASE}
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+
+  # used to query the database before implementing UI
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  db:
+    driver: local

@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import os
 import datetime
 import pytz
+from db import PostgresDB
 
 # Get environment variables from .env
 load_dotenv()
@@ -29,9 +30,17 @@ tag = args.tag[0]
 
 # check if webpage is up
 is_up, status_code, response_url = http_request.status(url)
+current_time = datetime.datetime.now(tzone)
 
+
+# save response to database
+conn = PostgresDB()
+conn.insert_cron_history_table(current_time, tag, url, is_up, status_code, response_url)
+
+
+# send email
 if not is_up:
     subject = f"Webpage Down: {tag} ({url})"
-    body=f"Could not reach {url}.\n\nURL: {url}\nTag: {tag}\nTimestamp: {datetime.datetime.now(tzone)}"
+    body=f"Could not reach {url}.\n\nURL: {url}\nTag: {tag}\nTimestamp: {current_time}"
     email_sender.send(subject, body)
     
