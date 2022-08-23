@@ -1,4 +1,7 @@
-#official python gitignore
+# project specific
+# test files
+*.ipynb
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
