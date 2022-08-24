@@ -28,7 +28,14 @@ class PostgresDB:
         except (Exception, psycopg2.Error) as error :
             print ("Error while connecting to PostgreSQL", error)
 
-
+    def get_table_from_sql(self, query):
+        cursor = self.connection.cursor()
+        cursor.execute(query)
+        records = cursor.fetchall()
+        cursor.close()
+        
+        return records
+    
     def execute_sql(self, sql: str):
         """Executes SQL query
 
