@@ -69,8 +69,8 @@ RECEIVER_EMAIL=<Email that Receives Alerts = example@something.com>
 TIME_ZONE=<Timezone for Email Timestamps. Example: Europe/Amsterdam>
 
 HOST=db
-USER=<username to access postgres db>
-PASSWORD=<password to access postgres db>
+POSTGRESUSER=<username to access postgres db>
+POSTGRESPASSWORD=<password to access postgres db>
 DATABASE=<database name>
 ```
 Find a list of availbable timezones [here](https://pypi.org/project/pytz/).

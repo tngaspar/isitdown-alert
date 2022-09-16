@@ -12,9 +12,9 @@ services:
     image: postgres:14.5-alpine
     restart: always
     environment:
-      - POSTGRES_USER=${USER}
-      - POSTGRES_PASSWORD=${PASSWORD}
-      - POSTGRES_DB=${DATABASE}
+      POSTGRES_USER: ${POSTGRESUSER}
+      POSTGRES_PASSWORD : ${POSTGRESPASSWORD}
+      POSTGRES_DB: ${DATABASE}
     ports:
       - '5432:5432'
     volumes: 
