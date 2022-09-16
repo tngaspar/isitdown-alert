@@ -4,4 +4,4 @@ yagmail==0.15.280
 PyYAML==6.0
 python-crontab==2.6.0
 pytz==2022.1
-psycopg2==2.9.3
+psycopg2-binary==2.9.3
