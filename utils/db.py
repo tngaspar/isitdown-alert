@@ -8,8 +8,8 @@ USER = os.environ.get('POSTGRESUSER')
 PASSWORD = os.environ.get('POSTGRESPASSWORD')
 DATABASE = os.environ.get('DATABASE')
 
-
 class PostgresDB:
+
     def __init__(self, user: str=USER, password: str=PASSWORD, database: str=DATABASE, port: str=None, host: str=HOST):
         try:
             self.connection = psycopg2.connect(user = user,

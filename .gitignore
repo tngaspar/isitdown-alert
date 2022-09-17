@@ -1,6 +1,12 @@
 # project specific
+
+# local dev
+app.bak/*
+run_flask_dev.sh
+
 # test files
 *.ipynb
+assets/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

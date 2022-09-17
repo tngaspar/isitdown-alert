@@ -27,6 +27,26 @@ services:
     ports:
       - 8080:8080
 
+  flask:
+    container_name: flask
+    build:
+      context: "."
+      dockerfile: "./app/Dockerfile"
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    #environment:
+    #  - SERVER_NAME=${NGINX_SERVER_NAME}
+    ports:
+      - "80:80"
+    restart: always
+
 volumes:
   db:
     driver: local

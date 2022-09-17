@@ -1,0 +1,68 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Tables {% endblock %} 
+
+<!-- Specific Plugin CSS goes HERE -->
+{% block plugin_stylesheets %}{% endblock plugin_stylesheets %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="content-wrapper">
+      <div class="page-header">
+        <h3 class="page-title"> Latest Requests </h3>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Table</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ordered by Newest</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Latest HTTP request checks</h4>
+              <p class="card-description"> Latest responses to http requests. Newests first</p>
+              <div class="table-responsive">
+                <table id="table1" class="table">
+                  <thead>
+                    <tr>
+                      <th>Up/Down</th>
+                      <th>Request Time</th>
+                      <th>Tag</th>
+                      <th>URL</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for elem in history %}
+                    <tr>
+                      {% if elem.3 %}
+                        <td><label class="badge badge-success">Up</label></td>
+                      {% else %}
+                        <td><label class="badge badge-danger">Down</label></td>
+                      {% endif %}
+                      <td>{{elem.2}}</td>
+                      <td>{{elem.0}}</td>
+                      <td>{{elem.1}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Plugin JS goes HERE  -->
+{% block plugin_javascripts %}{% endblock plugin_javascripts %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+
