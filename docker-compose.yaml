@@ -12,9 +12,9 @@ services:
     image: postgres:14.5-alpine
     restart: always
     environment:
-      - POSTGRES_USER=${USER}
-      - POSTGRES_PASSWORD=${PASSWORD}
-      - POSTGRES_DB=${DATABASE}
+      POSTGRES_USER: ${POSTGRESUSER}
+      POSTGRES_PASSWORD : ${POSTGRESPASSWORD}
+      POSTGRES_DB: ${DATABASE}
     ports:
       - '5432:5432'
     volumes: 
@@ -26,6 +26,26 @@ services:
     restart: always
     ports:
       - 8080:8080
+
+  flask:
+    container_name: flask
+    build:
+      context: "."
+      dockerfile: "./app/Dockerfile"
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    #environment:
+    #  - SERVER_NAME=${NGINX_SERVER_NAME}
+    ports:
+      - "80:80"
+    restart: always
 
 volumes:
   db:

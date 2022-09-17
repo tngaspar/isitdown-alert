@@ -4,12 +4,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 HOST = os.environ.get('HOST')
-USER = os.environ.get('USER')
-PASSWORD = os.environ.get('PASSWORD')
+USER = os.environ.get('POSTGRESUSER')
+PASSWORD = os.environ.get('POSTGRESPASSWORD')
 DATABASE = os.environ.get('DATABASE')
 
-
 class PostgresDB:
+
     def __init__(self, user: str=USER, password: str=PASSWORD, database: str=DATABASE, port: str=None, host: str=HOST):
         try:
             self.connection = psycopg2.connect(user = user,
@@ -28,7 +28,14 @@ class PostgresDB:
         except (Exception, psycopg2.Error) as error :
             print ("Error while connecting to PostgreSQL", error)
 
-
+    def get_table_from_sql(self, query):
+        cursor = self.connection.cursor()
+        cursor.execute(query)
+        records = cursor.fetchall()
+        cursor.close()
+        
+        return records
+    
     def execute_sql(self, sql: str):
         """Executes SQL query
 
