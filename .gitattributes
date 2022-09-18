@@ -1,0 +1,4 @@
+app/static/assets/css/* linguist-vendored
+app/static/assets/fonts/* linguist-vendored
+app/static/assets/js/off-canvas.js linguist-vendored
+app/static/assets/vendors/* linguist-vendored
