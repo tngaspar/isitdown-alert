@@ -1,6 +1,8 @@
 # Is It Down Alert - Webpage Status Email Alerts
 
-Validates if webpages are online on a predefined interval. Sends email alerts from gmail account if a page is down. Quick and simple deployment using Docker container.
+Validates if webpages are online on a predefined interval. Sends email alerts from gmail account if a page is down. Validation results are stored in a `PostgresDB` and displayed on a Dashboard build with `Flask`, `Jinja` and `Chart.js`. Quick and simple deployment using Docker containers.
+
+Live example of Dashboard [here](http://isitdown.tgaspar.com/).
 
 ## Table of Contents
 - [Is It Down Alert - Webpage Status Email Alerts](#is-it-down-alert---webpage-status-email-alerts)
@@ -12,6 +14,10 @@ Validates if webpages are online on a predefined interval. Sends email alerts fr
     - [Setting up the project](#setting-up-the-project)
     - [Removing Docker container](#removing-docker-container)
   - [Email Alert Example](#email-alert-example)
+  - [PostgreSQL Database](#postgresql-database)
+  - [Dashboard Webapp](#dashboard-webapp)
+    - [Dashboard](#dashboard)
+    - [Latest Request](#latest-request)
   - [Dependencies](#dependencies)
 ## Features
 
@@ -23,6 +29,8 @@ Validates if webpages are online on a predefined interval. Sends email alerts fr
 * Abstracts crontab job creation.
 * User chooses which websites to check as well as the interval for each one by populating *webpages.yaml*
 * If an http request does not return an expected response status code, an email is sent to a specified email address.
+* Validation results stored in Postgres database.
+* Dashboard website queries database and provides stats and charts to make information available to users.
 * Dockerized allowing easy and fast deployment on any system running docker.
 
 ## Requirements
@@ -106,6 +114,63 @@ Emails sent when website is unreacheble have the following format:
 <img src="docs/images/email_alert_example.png" width=90% />
 </p>
 
+## PostgreSQL Database
+
+Currently the database named **cron** has the following tables:
+
+`cron.dim_webpages`:
+| Column   | Type                                                    |
+|----------|---------------------------------------------------------|
+| id       | integer Auto Increment [nextval('dim_webpages_id_seq')] |
+| tag      | character varying(2000) NULL                            |
+| url      | character varying(2000) NULL                            |
+| interval | character varying(255) NULL                             |
+
+Stores webpages for which cronjobs were created and are currently active. This table mirrors the user input data from *webpages.yaml*.
+
+`cron.history`:
+|    Column    | Type                                               |
+|:------------:|----------------------------------------------------|
+| id           | integer Auto Increment [nextval('history_id_seq')] |
+| request_time | timestamptz                                        |
+| tag          | character varying(2000) NULL                       |
+| url          | character varying(2000)                            |
+| is_up        | boolean                                            |
+| status_code  | integer NULL                                       |
+| response_url | character varying(2000) NULL                       |
+
+Stores results from validations over time. Creates new record each time a a cron job runs and a http request is made.
+
+## Dashboard Webapp
+
+Dashboard that displays data from PostgreSQL database in an accessible format. 
+
+[Flask](https://github.com/pallets/flask) used for routing. [Jinja Corona Dark](https://github.com/app-generator/jinja-corona-dark) template used as base template for UI components. [Chart.js](https://github.com/chartjs/Chart.js) used for dashboarding.
+
+The webapp at the moment contains two pages:
+
+### Dashboard
+
+High level stats, last 7 day chart and all request chart.
+
+<p align="center">
+<img src="docs/images/dashboard_1.png" width=90% />
+</p>
+
+Currently active validations, time between requests and amount of requests previously made.
+
+<p align="center">
+<img src="docs/images/dashboard_2.png" width=90% />
+</p>
+
+### Latest Request
+
+Table of latest request results. Shows the most recent 100 request ordered from newest to oldest.
+
+<p align="center">
+<img src="docs/images/latest_requests.png" width=90% />
+</p>
+
 ## Dependencies
 
 * [Yagmail](https://pypi.org/project/yagmail/)
@@ -113,6 +178,18 @@ Emails sent when website is unreacheble have the following format:
 * [PyYAML](https://pypi.org/project/PyYAML/)
 * [pytz](https://pypi.org/project/pytz/)
 * [python-dotenv](https://pypi.org/project/python-dotenv/)
+* [psycopg2-binary](https://github.com/psycopg/psycopg2)
+* [Flask](https://github.com/pallets/flask)
+* [gunicorn](https://github.com/benoitc/gunicorn)
 
+These dependencies may be found in the *requirements.txt* file and are installed while building docker containers. 
+
+For local development and debugging this dependencies are installed using:
+
+```bash
+$ pip install -r requirements.txt
+```
+
+During development I installed these in a virtualenv. More on python virtual enviroments [here](https://docs.python.org/3/library/venv.html).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
