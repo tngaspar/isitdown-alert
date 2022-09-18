@@ -4,6 +4,10 @@ Validates if webpages are online on a predefined interval. Sends email alerts fr
 
 Live example of Dashboard [here](http://isitdown.tgaspar.com/).
 
+<p align="center">
+<img src="docs/images/dashboard_1.png" width=90% />
+</p>
+
 ## Table of Contents
 - [Is It Down Alert - Webpage Status Email Alerts](#is-it-down-alert---webpage-status-email-alerts)
   - [Table of Contents](#table-of-contents)
