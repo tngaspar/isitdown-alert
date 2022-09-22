@@ -1,6 +1,6 @@
 # Is It Down Alert - Webpage Status Email Alerts
 
-Validates if webpages are online on a predefined interval. Sends email alerts from gmail account if a page is down. Validation results are stored in a `PostgresDB` and displayed on a Dashboard build with `Flask`, `Jinja` and `Chart.js`. Quick and simple deployment using Docker containers.
+Validates if webpages are online on a predefined interval. Sends email alerts from gmail account if a page is down. Validation results are stored in a `PostgresDB` and displayed on a Dashboard built with `Flask`, `Jinja` and `Chart.js`. Quick and simple deployment using Docker containers.
 
 Live example of Dashboard [here](http://isitdown.tgaspar.com/).
 
@@ -35,7 +35,7 @@ Live example of Dashboard [here](http://isitdown.tgaspar.com/).
 * If an http request does not return an expected response status code, an email is sent to a specified email address.
 * Validation results stored in Postgres database.
 * Dashboard website queries database and provides stats and charts to make information available to users.
-* Dockerized allowing easy and fast deployment on any system running docker.
+* Fast deployment on any system with docker.
 
 ## Requirements
 
@@ -58,7 +58,7 @@ After creating a Gmail account, an App Password needs to be created.
 <img src="docs/images/security_settings.jpg" width=90% />
 </p>
 
-On *Select app* chose *Other (Custom name)* and chose any name.
+On *Select app* choose *Other (Custom name)* and choose any name.
 Save the password for later use in project parameters.
 
 <p align="center">
@@ -85,9 +85,9 @@ POSTGRESUSER=<username to access postgres db>
 POSTGRESPASSWORD=<password to access postgres db>
 DATABASE=<database name>
 ```
-Find a list of availbable timezones [here](https://pypi.org/project/pytz/).
+Find a list of available time zones [here](https://pypi.org/project/pytz/).
 
-3. Edit `webpages.yaml` and add all the webpages to check as well as the corresponding time intervals. This file already contains 2 examples and instruction on how to configure it.
+3. Edit `webpages.yaml` and add all the webpages to check as well as the corresponding time intervals. This file already contains 2 examples and instructions on how to configure it.
 
 4. Build and run the container:
 
@@ -99,9 +99,9 @@ Check if the container is running with the command `docker ps`.
 
 That's it. The email alerts should now be activated. 
 
-Before deploying final webpage list, I would recommend using an unreacheble URL with a small interval to check if emails are being sent. 
+Before deploying the final webpage list, I would recommend using an unreachable URL with a small interval to check if emails are being sent. 
 
-In a future release, I intend to add a way to track sucessfull requests to verify that all is up and running and keep an history of websites' downtimes.
+In a future release, I intend to add a way to track successfull requests to verify that all is up and running and keep a history of websites' downtimes.
 
 ### Removing Docker container
 
@@ -112,7 +112,7 @@ $ docker-compose rm  # Removes the container
 
 ## Email Alert Example
 
-Emails sent when website is unreacheble have the following format:
+Emails sent when website is unreachable have the following format:
 
 <p align="center">
 <img src="docs/images/email_alert_example.png" width=90% />
@@ -143,7 +143,7 @@ Stores webpages for which cronjobs were created and are currently active. This t
 | status_code  | integer NULL                                       |
 | response_url | character varying(2000) NULL                       |
 
-Stores results from validations over time. Creates new record each time a a cron job runs and a http request is made.
+Stores results from validations over time. Creates a new record each time a cron job runs and a http request is made.
 
 ## Dashboard Webapp
 
@@ -169,7 +169,7 @@ Currently active validations, time between requests and amount of requests previ
 
 ### Latest Request
 
-Table of latest request results. Shows the most recent 100 request ordered from newest to oldest.
+Table of latest request results. Shows the most recent 100 requests ordered from newest to oldest.
 
 <p align="center">
 <img src="docs/images/latest_requests.png" width=90% />
@@ -194,6 +194,6 @@ For local development and debugging this dependencies are installed using:
 $ pip install -r requirements.txt
 ```
 
-During development I installed these in a virtualenv. More on python virtual enviroments [here](https://docs.python.org/3/library/venv.html).
+During development I installed these in a virtualenv. More on python virtual environments [here](https://docs.python.org/3/library/venv.html).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
