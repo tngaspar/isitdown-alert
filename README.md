@@ -12,6 +12,7 @@ Live example of Dashboard [here](http://isitdown.tgaspar.com/).
 - [Is It Down Alert - Webpage Status Email Alerts](#is-it-down-alert---webpage-status-email-alerts)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
+  - [Project Components](#project-components)
   - [Requirements](#requirements)
   - [Installation and Setup](#installation-and-setup)
     - [Setting up a Gmail account to use as Sender](#setting-up-a-gmail-account-to-use-as-sender)
@@ -36,6 +37,13 @@ Live example of Dashboard [here](http://isitdown.tgaspar.com/).
 * Validation results stored in Postgres database.
 * Dashboard website queries database and provides stats and charts to make information available to users.
 * Fast deployment on any system with docker.
+
+## Project Components
+
+<p align="center">
+<img src="docs/architecture/isitdown_architecture.png" width=90% />
+</p>
+
 
 ## Requirements
 
