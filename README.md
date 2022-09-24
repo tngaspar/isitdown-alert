@@ -44,6 +44,12 @@ Live example of Dashboard [here](http://isitdown.tgaspar.com/).
 <img src="docs/architecture/isitdown_architecture.png" width=90% />
 </p>
 
+<!-- TODO: Rewrite this section -->
+
+User created **webpages.yaml** is read by Cronjobs container and for each of the webpages specified a cronjob is created. On each cronjob execution a history entry is created on a Postgres database table and if webpage was unreachable an email alert is sent. 
+Adminer is a lightweight open source database management tool that may prove useful to easy run queries on database or perform admin operations. 
+
+To display and share status of checks performed on website a dashboard website was created. This webapp queries the database and displays the data on an easy to understand format.
 
 ## Requirements
 
