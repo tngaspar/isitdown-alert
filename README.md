@@ -1,6 +1,8 @@
 # Is It Down Alert - Webpage Status Email Alerts
+  ***Note:** for complex webpage status monitoring needs I would recommend checking out [uptime-kuma](https://github.com/louislam/uptime-kuma). Uptime-kuma is an open-source self-hosted monitoring tool.* 
 
 Validates if webpages are online on a predefined interval. Sends email alerts from gmail account if a page is down. Validation results are stored in a `PostgresDB` and displayed on a Dashboard built with `Flask`, `Jinja` and `Chart.js`. Quick and simple deployment using Docker containers.
+
 
 Live example of Dashboard [here](http://isitdown.tgaspar.com/).
 
